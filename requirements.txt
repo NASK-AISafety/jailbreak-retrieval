@@ -1,0 +1,23 @@
+# Jailbreak-retrieval ablation/sensitivity code — runtime dependencies.
+# Only libraries actually imported by the released modules are listed.
+# Versions are the ones verified in the reference environment
+# (emnlp_rebuttal_baselines/.venv, Python 3.12); loosened to >= for portability.
+#
+# Imported by:
+#   utils/data.py, utils/methods.py, utils/benchmark.py, feature_ablation.py,
+#   pool_size_sweep.py, hparam_sensitivity_suite.py  -> numpy, pandas
+#   parquet caching (pd.read_parquet / to_parquet)   -> pyarrow
+#   utils/reporting.py                                -> matplotlib, seaborn
+#
+# NOTE: seaborn was NOT present in the reference .venv; it is required because
+# jailbreak_retrieval/utils/__init__.py imports reporting.py at package import time
+# (see RELEASE_NOTES.md). Install it before importing the package.
+
+numpy>=2.0
+pandas>=2.2
+pyarrow>=15.0
+matplotlib>=3.8
+seaborn>=0.13
+# Reading the published dataset (default data source)
+datasets>=2.20
+huggingface_hub>=0.24
